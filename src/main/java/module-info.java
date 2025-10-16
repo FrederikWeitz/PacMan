@@ -8,7 +8,6 @@ module org.paman {
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.bootstrapfx.core;
   requires eu.hansolo.tilesfx;
-  requires com.almasb.fxgl.all;
   requires javafx.graphics;
 
   opens org.pacman to javafx.fxml;

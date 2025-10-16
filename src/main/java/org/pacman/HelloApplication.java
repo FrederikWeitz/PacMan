@@ -3,29 +3,23 @@ package org.pacman;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import static org.pacman.Properties.getGridConfig;
 
 public class HelloApplication extends Application {
   @Override
-  public void start(Stage stage) throws IOException {
-    int rowCount = 21;
-    int columnCount = 19;
-    int tileSize = 32;
-    int boardWidth = tileSize * columnCount;
-    int boardHeight = tileSize * rowCount;
+  public void start(Stage stage) {
 
     PacMan pacMan = new PacMan();
 
-    Scene scene = new Scene(pacMan.getRoot(), boardWidth, boardHeight);
+    Scene scene = new Scene(pacMan.getRoot(), getGridConfig().boardWidth(), getGridConfig().boardHeight());
     stage.setTitle("PacMan");
     stage.setScene(scene);
     stage.show();
     stage.centerOnScreen();
     stage.setResizable(false);
-    stage.setOnCloseRequest(e -> Platform.exit());
+    stage.setOnCloseRequest(_ -> Platform.exit());
   }
 
   public static void main(String[] args) {
