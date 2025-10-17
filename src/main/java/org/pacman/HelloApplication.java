@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import static org.pacman.Properties.getGridConfig;
+import static org.pacman.Properties.stopTicker;
 
 public class HelloApplication extends Application {
   @Override
@@ -13,13 +14,16 @@ public class HelloApplication extends Application {
 
     PacMan pacMan = new PacMan();
 
-    Scene scene = new Scene(pacMan.getRoot(), getGridConfig().boardWidth(), getGridConfig().boardHeight());
+    Scene scene = new Scene(pacMan.getRoot());
     stage.setTitle("PacMan");
     stage.setScene(scene);
     stage.show();
     stage.centerOnScreen();
     stage.setResizable(false);
-    stage.setOnCloseRequest(_ -> Platform.exit());
+    stage.setOnCloseRequest(_ -> {
+      stopTicker();
+      Platform.exit();
+    });
   }
 
   public static void main(String[] args) {

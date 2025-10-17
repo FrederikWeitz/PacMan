@@ -13,4 +13,13 @@ public record GridConfig(int rowCount, int columnCount, int tileSize) {
   public int tileSize() { return tileSize; }
   public int rowCount() { return rowCount; }
   public int columnCount() { return columnCount; }
+
+  public int getRowPosition(int row) {
+    if (row < 0 || row >= rowCount) { throw new IndexOutOfBoundsException("row out of bounds: " + row); }
+    return row * tileSize;
+  }
+  public int getColumnPosition(int column) {
+    if (column < 0 || column >= columnCount) { throw new IndexOutOfBoundsException("column out of bounds: " + column); }
+    return column * tileSize;
+  }
 }

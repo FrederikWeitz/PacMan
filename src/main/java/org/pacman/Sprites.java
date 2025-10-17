@@ -14,6 +14,7 @@ public enum Sprites {
   CHERRY("/sprites/cherry.png"),
   CHERRY2("/sprites/cherry2.png"),
   POWER_FOOD("/sprites/powerFood.png"),
+  FOOD("/sprites/food.png"),
   PACMAN_DOWN("/sprites/pacmanDown.png"),
   PACMAN_LEFT("/sprites/pacmanLeft.png"),
   PACMAN_RIGHT("/sprites/pacmanRight.png"),
@@ -25,14 +26,6 @@ public enum Sprites {
   // Konstruktor der Enum
   Sprites(String filePath) {
     this.filePath = filePath;
-  }
-
-  /**
-   * Gibt den Dateipfad des Icons zurück.
-   * @return Der relative Dateipfad zum Icon.
-   */
-  public String getFilePath() {
-    return filePath;
   }
 
   /**
@@ -77,10 +70,20 @@ public enum Sprites {
   }
 
   /**
+   * Alternativer Parameter als Ganzzahl
+   *
+   * @param size Die gewünschte Breite und Höhe des Icons in Pixeln.
+   * @return Ein JavaFX ImageView-Objekt des Icons.
+   */
+  public ImageView getImageView(int size) {
+    return getImageView((double) size); // Ruft die Methode mit Größe 0 auf
+  }
+
+  /**
    * Erstellt ein JavaFX ImageView-Objekt in Originalgröße für das Icon.
    * @return Ein JavaFX ImageView-Objekt des Icons in Originalgröße.
    */
   public ImageView getImageView() {
-    return getImageView(0); // Ruft die Methode mit Größe 0 auf
+    return getImageView(0.0); // Ruft die Methode mit Größe 0 auf
   }
 }

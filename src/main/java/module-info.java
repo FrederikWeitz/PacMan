@@ -12,4 +12,6 @@ module org.paman {
 
   opens org.pacman to javafx.fxml;
   exports org.pacman;
+  exports org.pacman.blocks;
+  opens org.pacman.blocks to javafx.fxml;
 }
