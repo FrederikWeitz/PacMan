@@ -7,18 +7,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import org.pacman.blocks.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.pacman.Properties.*;
+import static org.pacman.data.Field.*;
+import static org.pacman.data.Properties.*;
 
 public class PacMan {
 
   Pane root;
-
-  HashSet<Block> walls;
-  HashSet<Block> foods;
-  HashSet<Block> ghosts;
-  Player pacman;
 
   //X = wall, O = skip, P = pac man, ' ' = food
   //Ghosts: b = blue, o = orange, p = pink, r = red
@@ -52,23 +49,23 @@ public class PacMan {
     loadMap(tileMap);
     setNewGridConfiguration();
 
-    root.addEventHandler(KeyEvent.KEY_RELEASED, e -> {
+    root.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
       KeyCode keyCode = e.getCode();
       switch (keyCode) {
         case UP: {
-          pacman.move(Direction.UP);
+          getPacman().move(Direction.UP);
           break;
         }
         case DOWN: {
-          pacman.move(Direction.DOWN);
+          getPacman().move(Direction.DOWN);
           break;
         }
         case LEFT: {
-          pacman.move(Direction.LEFT);
+          getPacman().move(Direction.LEFT);
           break;
         }
         case RIGHT: {
-          pacman.move(Direction.RIGHT);
+          getPacman().move(Direction.RIGHT);
           break;
         }
         default:
@@ -98,10 +95,6 @@ public class PacMan {
   private void loadMap(String[] tempTileMap) {
     setGridConfig(tempTileMap.length, tempTileMap[0].length(), 32);
 
-    walls = new HashSet<>();
-    foods = new HashSet<>();
-    ghosts = new HashSet<>();
-
     for (int row = 0; row < getGridConfig().rowCount(); row++) {
       for (int column = 0; column < getGridConfig().columnCount(); column++) {
         char c = tileMap[row].charAt(column);
@@ -112,42 +105,42 @@ public class PacMan {
         switch (c) {
           case 'X': {
             Fixed wall = new Fixed(Sprites.WALL, row, column);
-            walls.add(wall);
+            getWalls().add(wall);
             root.getChildren().add(wall.getImageView());
             break;
           }
           case ' ': {
             Fixed food = new Fixed(Sprites.FOOD, row, column);
-            foods.add(food);
+            getFoods().add(food);
             root.getChildren().add(food.getImageView());
             break;
           }
           case 'P': {
-            pacman = new Player(Sprites.PACMAN_RIGHT, row, column);
-            root.getChildren().add(pacman.getImageView());
+            setPacman(new Player(Sprites.PACMAN_RIGHT, row, column));
+            root.getChildren().add(getPacman().getImageView());
             break;
           }
           case 'b': {
             Foe ghost_blue = new Foe(Sprites.BLUE_GHOST, row, column);
-            ghosts.add(ghost_blue);
+            getGhosts().add(ghost_blue);
             root.getChildren().add(ghost_blue.getImageView());
             break;
           }
           case 'o': {
             Foe ghost_orange = new Foe(Sprites.ORANGE_GHOST, row, column);
-            ghosts.add(ghost_orange);
+            getGhosts().add(ghost_orange);
             root.getChildren().add(ghost_orange.getImageView());
             break;
           }
           case 'p': {
             Foe ghost_pink = new Foe(Sprites.PINK_GHOST, row, column);
-            ghosts.add(ghost_pink);
+            getGhosts().add(ghost_pink);
             root.getChildren().add(ghost_pink.getImageView());
             break;
           }
           case 'r': {
             Foe ghost_red = new Foe(Sprites.RED_GHOST, row, column);
-            ghosts.add(ghost_red);
+            getGhosts().add(ghost_red);
             root.getChildren().add(ghost_red.getImageView());
             break;
           }
@@ -156,9 +149,5 @@ public class PacMan {
         }
       }
     }
-  }
-
-  public boolean collision(Block a, Block b) {
-    return true;
   }
 }

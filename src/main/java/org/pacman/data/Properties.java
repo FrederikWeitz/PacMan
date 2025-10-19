@@ -1,4 +1,4 @@
-package org.pacman;
+package org.pacman.data;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -1,4 +1,4 @@
-package org.pacman;
+package org.pacman.data;
 
 public record GridConfig(int rowCount, int columnCount, int tileSize) {
 
@@ -11,6 +11,7 @@ public record GridConfig(int rowCount, int columnCount, int tileSize) {
   public int boardWidth()  { return tileSize * columnCount; }
   public int boardHeight() { return tileSize * rowCount; }
   public int tileSize() { return tileSize; }
+  public int quarterTileSize() {  return tileSize / 4; }
   public int rowCount() { return rowCount; }
   public int columnCount() { return columnCount; }
 

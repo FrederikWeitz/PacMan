@@ -5,8 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static org.pacman.Properties.getGridConfig;
-import static org.pacman.Properties.stopTicker;
+import static org.pacman.data.Properties.stopTicker;
 
 public class HelloApplication extends Application {
   @Override
