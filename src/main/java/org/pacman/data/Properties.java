@@ -3,6 +3,9 @@ package org.pacman.data;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import org.pacman.blocks.Foe;
+
+import static org.pacman.data.Field.*;
 
 public class Properties {
 
@@ -13,10 +16,9 @@ public class Properties {
     gridConfig = new GridConfig(rowCount, columnCount, tileSize);
   }
 
-  private static Timeline ticker = new Timeline(
-      new KeyFrame(Duration.millis(50), e -> {
-        // -> alle 50 ms ausführen
-        // doTick();
+  private static final Timeline ticker = new Timeline(
+      new KeyFrame(Duration.millis(80), _ -> {
+        getGhosts().forEach(Foe::move);
       })
   );
 

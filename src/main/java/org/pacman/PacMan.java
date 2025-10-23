@@ -7,9 +7,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import org.pacman.blocks.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.pacman.data.Field.*;
 import static org.pacman.data.Properties.*;
 
@@ -73,6 +70,9 @@ public class PacMan {
       e.consume(); // Event nicht weiterreichen
     });
 
+    root.setFocusTraversable(true);
+    root.requestFocus();
+    root.setOnMouseClicked(ev -> root.requestFocus());
     startTicker();
   }
 
@@ -83,9 +83,6 @@ public class PacMan {
   public void setNewGridConfiguration() {
     root.setPrefSize(getGridConfig().boardWidth(), getGridConfig().boardHeight());
     setBackground();
-    root.setFocusTraversable(true);
-    root.requestFocus();
-    root.setOnMouseClicked(ev -> root.requestFocus());
   }
 
   private void setBackground() {

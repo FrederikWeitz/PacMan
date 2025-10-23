@@ -18,7 +18,6 @@ public class Player extends Moving {
     setPosition();
   }
 
-  @Override
   public void move(Direction direction) {
     switch (direction) {
       case LEFT: {

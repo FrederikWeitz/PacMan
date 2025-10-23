@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Field {
 
-  private static List<Fixed> walls = new ArrayList<>();
-  private static List<Fixed> foods = new ArrayList<>();
-  private static List<Foe> ghosts = new ArrayList<>();
+  private static final List<Fixed> walls = new ArrayList<>();
+  private static final List<Fixed> foods = new ArrayList<>();
+  private static final List<Foe> ghosts = new ArrayList<>();
   private static Player pacman = null;
 
   public static List<Fixed> getWalls() {

@@ -16,15 +16,13 @@ public abstract class Moving extends Block {
   }
 
   public Moving(Sprites sprite, BoundingBox boundingBox) {
-    super(sprite); //, (((int) boundingBox.getMinY() / getGridConfig().tileSize())), (((int) boundingBox.getMinX() / getGridConfig().tileSize())));
+    super(sprite);
 
     row = (int) boundingBox.getMinY();
     column = (int) boundingBox.getMinX();
 
     imageView = sprite.getImageView(getGridConfig().tileSize());
   }
-
-  abstract public void move(Direction direction);
 
   public boolean isColliding(Block block) {
     return (intersectsWithTolerance(block, 1.0));
@@ -55,7 +53,4 @@ public abstract class Moving extends Block {
     double dy = Math.min(p.getMaxY(), b.getMaxY()) - Math.max(p.getMinY(), b.getMinY());
     return (dx > tolerance && dy > tolerance);
   }
-
-
-
 }
