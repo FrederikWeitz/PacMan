@@ -70,7 +70,7 @@ public class PacMan {
       e.consume(); // Event nicht weiterreichen
     });
 
-    root.setFocusTraversable(true);
+    // root.setFocusTraversable(true);
     root.requestFocus();
     root.setOnMouseClicked(ev -> root.requestFocus());
     startTicker();

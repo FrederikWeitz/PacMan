@@ -1,7 +1,5 @@
 package org.pacman.blocks;
 
-import javafx.geometry.BoundingBox;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.pacman.Sprites;
 
@@ -21,20 +19,17 @@ public class Block {
     this.column = getGridConfig().getColumnPosition(column);
   }
 
-  Block(Sprites sprite) {
-    imageView = sprite.getImageView(getGridConfig().tileSize());
-  }
-
   public ImageView getImageView() {
     return imageView;
   }
 
-  public void setNewImage(Image image) {
-    imageView.setImage(image);
+  void setNewImage(Sprites sprite) {
+    this.sprite = sprite;
+    imageView.setImage(sprite.getImage());
   }
 
-  public void setPosition() {
-    imageView.setLayoutX(this.column);
-    imageView.setLayoutY(this.row);
+  void setPosition() {
+    imageView.setLayoutX(column);
+    imageView.setLayoutY(row);
   }
 }
