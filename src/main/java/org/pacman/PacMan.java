@@ -107,7 +107,7 @@ public class PacMan {
             break;
           }
           case ' ': {
-            Fixed food = new Fixed(Sprites.FOOD, row, column);
+            Food food = new Food(Sprites.FOOD, row, column);
             getFoods().add(food);
             root.getChildren().add(food.getImageView());
             break;

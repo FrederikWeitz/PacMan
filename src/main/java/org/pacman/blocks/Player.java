@@ -2,6 +2,7 @@ package org.pacman.blocks;
 
 import org.pacman.Sprites;
 
+import static org.pacman.data.Field.getFoods;
 import static org.pacman.data.Field.getWalls;
 import static org.pacman.data.Properties.getGridConfig;
 
@@ -48,6 +49,14 @@ public class Player extends Moving {
           break;
         }
         default:
+      }
+
+      // Kollision mit Food
+      Food food = direction.intersectsFood(this, getFoods());
+      if (food != null) {
+        System.out.println("Food eaten!");
+        getFoods().remove(food);
+        food.isEaten();
       }
       setPosition();
     }

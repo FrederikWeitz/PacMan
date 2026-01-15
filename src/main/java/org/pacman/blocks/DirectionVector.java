@@ -21,3 +21,4 @@ public record DirectionVector(int vertical, int horizontal) {
   }
 
 }
+

@@ -49,6 +49,17 @@ public enum Direction {
     return intersectsWithTolerance(p, b, 1.0);
   }
 
+  public Food intersectsFood(Block mainBlock, List<Food> foods) {
+    Bounds p = getMovedBoundingBox(mainBlock);
+    for (Food food : foods) {
+      Bounds b = food.getImageView().localToScene(food.getImageView().getBoundsInLocal());
+      if (intersectsWithTolerance(p, b, 6.0)) {
+        return food;
+      }
+    }
+    return null;
+  }
+
   private boolean intersectsWithTolerance(Bounds p, Bounds b, double tolerance) {
     double dx = Math.min(p.getMaxX(), b.getMaxX()) - Math.max(p.getMinX(), b.getMinX());
     double dy = Math.min(p.getMaxY(), b.getMaxY()) - Math.max(p.getMinY(), b.getMinY());

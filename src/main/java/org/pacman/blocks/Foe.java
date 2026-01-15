@@ -55,9 +55,10 @@ public class Foe extends Moving {
       }
     }
 
+    // steht am Ende, weil dann beim nächsten
     if (forceDirectionChange <= 0) {
       direction = direction.getRandomDirectionExclusively();
-      forceDirectionChange = 20;
+      forceDirectionChange = (forceDirectionChange <= -10) ? 20 : forceDirectionChange;
     }
     setPosition();
   }
